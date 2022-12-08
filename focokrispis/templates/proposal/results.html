@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %} 
+    The winner dish for {{tomorrow}} is:
+    <h1>{{ winner.title }}</h1>
+    <p>{{ winner.description }}</p>
+    <p>Created by: {{ winner.user.username }}</p>
+
+    <a href="{% url 'home' %}">Home</a>
+{% endblock %}

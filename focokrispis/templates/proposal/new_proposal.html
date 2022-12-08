@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %} 
+
+       
+
+    {% if already_proposed %}
+        <div class="container py-5">
+            {{user.username}} have already submitted your proposals for {{tomorrow}}. <br>
+            Waiting for the other users to submit their proposals.<br>
+            You can see the proposals of other users in the following link:<br>
+            <a href="{% url 'todays_proposals' %}">Show Proposals</a>
+        </div>
+    {% endif%}
+    {% if  not already_proposed %}
+        <!--Register--> 
+        {% load crispy_forms_tags %}  
+        <div class="container py-5">
+            <h1>Create new food proposal for {{tomorrow}}</h1>
+            <form method="POST">
+                {% csrf_token %}
+                {{ new_proposal |crispy }}                    
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </form>
+        </div>
+    {% endif %}
+<a href="{% url 'home' %}">Home</a>
+
+{% endblock %}

@@ -62,23 +62,23 @@
   </div>
 {% else %}
   <div class="col d-flex justify-content-center align-items-center vh-100">
-    <div class="card text-center" style="width: 25rem;">
+    <div class="card text-center container-personalized">
       <div class="card-body">
         <h2>You are not logged in.</h2>
         <br />
         <div class="container">
           <div class="row">
-            <div class="col-sm">
+            <div class="col-md">
               <h4>
-                <a class="link-primary" href="{% url 'login' %}">Log In</a>
+                <a class="submit-btn-personalized" style="--clr:#eb4040" href="{% url 'login' %}"><span> Log In </span> <i></i> </a>
               </h4>
             </div>
             <div class="col-sm">
               <h3>Or</h3>
             </div>
-            <div class="col-sm">
+            <div class="col-md">
               <h4>
-                <a class="link-dark" href="{% url 'signup' %}">Sign up</a>
+                <a class="submit-btn-personalized" style="--clr:#b659cd" href="{% url 'signup' %}"><span> Sign up </span> <i></i> </a>
               </h4>
             </div>
           </div>

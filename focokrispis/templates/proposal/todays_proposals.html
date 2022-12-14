@@ -29,6 +29,11 @@
           <a class="btn btn-primary btn-" href="{% url 'proposal' %}" role="button">
             Create Proposal
           </a>
+          {% if users_without_proposals|length != 0  %}
+          <a class="btn btn-primary btn-" href="{% url 'send_reminder_email' %}" role="button">
+            Send Reminder Email
+          </a>
+          {% endif %}
         </div>
       </div>
 

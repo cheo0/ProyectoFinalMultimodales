@@ -144,3 +144,5 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'focokrispis.multimodales@gmail.com'
 EMAIL_HOST_PASSWORD = 'nfkfcxtasvwycvzy'
+
+CSRF_TRUSTED_ORIGINS = ['https://proyectofinalmultimodales-production.up.railway.app']

@@ -28,5 +28,6 @@ urlpatterns = [
     path('proposal/', proposal_view, name='proposal'),
     path('todays_proposals/', show_proposals, name='todays_proposals'),
     path('vote/<int:proposal_id>/', vote, name='vote'),
-    path('results/', results, name='results')
+    path('results/', results, name='results'),
+    path('send_reminder_email/', send_reminder_email, name='send_reminder_email')
 ]

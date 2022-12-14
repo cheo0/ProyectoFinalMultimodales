@@ -8,6 +8,9 @@ import django.db.models as models
 
 from .forms import ProposalForm
 from .models import Proposal
+from .email import *
+
+from multiprocessing import Process
 
 import datetime
 
@@ -64,7 +67,21 @@ def show_proposals(request):
     tomorrow = get_tomorrow_date_name()
     proposals = Proposal.objects.filter(date__date=today)
     users_without_proposals = get_users_without_proposals()
-    return render(request, 'proposal/todays_proposals.html', {'proposals': proposals, 'users_without_proposals': users_without_proposals, 'tomorrow': tomorrow, 'already_voted': already_voted, 'results_available': results_available})
+
+    response = render(request, 'proposal/todays_proposals.html', {'proposals': proposals, 'users_without_proposals': users_without_proposals, 'tomorrow': tomorrow, 'already_voted': already_voted, 'results_available': results_available})
+    
+    if not users_without_proposals and not request.COOKIES.get('vote_notification_sent'):   
+        p = Process(target=send_vote_notification_email, args=())    
+        p.start()
+        response.set_cookie('vote_notification_sent', True, expires=datetime.datetime.now() + datetime.timedelta(days=1))
+
+    if not request.COOKIES.get('results_sent') and results_available:
+        winner = proposals.order_by('-number_of_votes').first()
+        p = Process(target=send_results_email, args=(winner, tomorrow))
+        p.start()
+        response.set_cookie('results_sent', True, expires=datetime.datetime.now() + datetime.timedelta(days=1))
+
+    return response
 
 @login_required
 def vote(request, proposal_id):
@@ -86,6 +103,14 @@ def results(request):
     tomorrow = get_tomorrow_date_name()
     proposals = Proposal.objects.filter(date__date=today)
     winner = proposals.order_by('-number_of_votes').first()
-    return render(request, 'proposal/results.html', {'winner': winner, 'tomorrow' : tomorrow})
-        
+    response = render(request, 'proposal/results.html', {'winner': winner, 'tomorrow' : tomorrow})
+    return response
+    
+@login_required
+def send_reminder_email(request):
+    users_without_proposals = get_users_without_proposals()
+    p = Process(target=send_proposal_reminder_email, args=(users_without_proposals,))
+    p.start()
+    messages.success(request, 'Reminder sent successfully')
+    return redirect('proposal')
 

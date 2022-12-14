@@ -102,12 +102,12 @@
     border-right: 1px solid rgba(255, 255, 255, 0.2);
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 10px;
-    animation: animate 10s linear infinite;
+    animation: animation 10s linear infinite;
     animation-delay: calc(-1s * var(--i));
 }
 
 
-@keyframes animate {
+@keyframes animation {
 
     0%,
     100% {

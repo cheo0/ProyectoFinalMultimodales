@@ -1,0 +1,43 @@
+.fixed-padding div h1 {
+    color: var(--main-color);
+}
+
+.fixed-padding div form div label {
+    color: var(--secondary-color);
+    font-size: 18px;
+    letter-spacing: 1px;
+}
+
+.fixed-padding div form button {
+    position: relative;
+    background-color: var(--main-color);
+    color: var(--secondary-color);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 10px 30px;
+    border-radius: 10px;
+    transition: 0.5s;
+    border: #444;
+}
+
+.fixed-padding div form button:hover {
+    letter-spacing: 3px;
+    background-color: var(--main-color);
+    color: var(--terciary-color-second);
+    box-shadow: 0 0 30px var(--main-color);
+}
+
+.badge.bg-info a.text-decoration-none {
+    text-decoration: underline !important;
+    font-style: italic;
+    color: var(--secondary-color);
+    transition: 0.5s;
+}
+
+.badge.bg-info a.text-decoration-none:hover {
+    color: var(--main-color);
+    text-decoration: underline !important;
+    font-style: italic;
+    transition: 0.5s;
+}

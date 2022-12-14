@@ -93,6 +93,69 @@
     padding: 0 !important;
 }
 
+/* Squares forms */
+.container-forms .square {
+    position: absolute;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    animation: animate 10s linear infinite;
+    animation-delay: calc(-1s * var(--i));
+}
+
+
+@keyframes animate {
+
+    0%,
+    100% {
+        transform: translateY(-40px);
+    }
+
+    50% {
+        transform: translateY(40px);
+    }
+}
+
+.container-forms .square:nth-child(1) {
+    top: -50px;
+    right: -60px;
+    width: 100px;
+    height: 100px;
+}
+
+.container-forms .square:nth-child(2) {
+    top: 150px;
+    left: -100px;
+    width: 120px;
+    height: 120px;
+    z-index: 2;
+}
+
+.container-forms .square:nth-child(3) {
+    bottom: 50px;
+    right: -60px;
+    width: 80px;
+    height: 80px;
+    z-index: 2;
+}
+
+.container-forms .square:nth-child(4) {
+    bottom: -15px;
+    left: -40px;
+    width: 50px;
+    height: 50px;
+}
+
+.container-forms .square:nth-child(5) {
+    top: -80px;
+    left: 140px;
+    width: 60px;
+    height: 60px;
+}
+
 /* Forms Fixed */
 .container-forms h2,
 .container-forms form,
@@ -163,4 +226,112 @@
     background-color: var(--main-color);
     color: var(--terciary-color-second);
     box-shadow: 0 0 30px var(--main-color);
+}
+
+/* Logged session */
+
+.loggedSession-container {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+}
+
+.navbar-personalized {
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    top: -60px;
+    padding: 20px 50px;
+    width: 95vh;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+}
+
+.session-proposal {
+    width: 100vh;
+}
+
+.container-fluid .navbar-brand {
+    color: var(--terciary-color-second);
+    font-weight: bold;
+    font-size: 1.5em;
+    line-height: 0;
+    padding: 0;
+    font-style: italic;
+    text-decoration: underline;
+}
+
+.navbar__buttons {
+    text-decoration: none;
+    font-weight: 500;
+    color: var(--secondary-color) !important;
+    padding: 8px 15px;
+    border-radius: 25px;
+    transition: 0.5s;
+}
+
+button#dropdownMenuButton1 {
+    background-color: var(--main-color);
+}
+
+.navbar__buttons:hover {
+    letter-spacing: 3px;
+    background-color: var(--main-color);
+    color: var(--terciary-color-second) !important;
+    box-shadow: 0 0 30px var(--main-color);
+}
+
+.dropdown.dropstart ul {
+    background: var(--main-color) !important;
+}
+
+.dropdown.dropstart ul li a {
+    color: var(--secondary-color) !important;
+}
+
+.session-proposal h1 {
+    color: var(--main-color);
+}
+
+.card {
+    background-color: transparent !important;
+    border: none !important;
+}
+
+.card-personalized {
+    margin-top: 20px;
+    margin-left: 20px;
+    background-color: rgba(235, 64, 64, 0.8);
+    border-radius: 10px;
+    transition: 0.5s;
+}
+
+.card-personalized:hover {
+    box-shadow: 0 5px 10px rgb(165, 47, 47);
+    transition: 0.5s;
+}
+
+.card-personalized h3 {
+    color: var(--main-color);
+}
+
+.card-personalized p {
+    margin-left: 20px;
+    color: #444;
+}
+
+.fixed-padding {
+    margin-top: 20px;
 }

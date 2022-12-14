@@ -1,0 +1,44 @@
+.session-proposal h2,
+.session-proposal h3 {
+    color: var(--main-color);
+}
+
+.session-proposal .description {
+    color: var(--secondary-color);
+    font-weight: 500;
+}
+
+.containerDish {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 4em 0;
+}
+
+.electDish {
+    position: absolute;
+    color: transparent !important;
+    font-size: 5em;
+}
+
+.containerDish h1.electDish:nth-child(1) {
+    color: transparent;
+    -webkit-text-stroke: 2px var(--main-color);
+}
+
+.containerDish h1.electDish:nth-child(2) {
+    color: var(--terciary-color-first) !important;
+    animation: animate 4s ease-in-out infinite;
+}
+
+@keyframes animate {
+
+    0%,
+    100% {
+        clip-path: polygon(0 41%, 16% 48%, 35% 57%, 50% 65%, 68% 61%, 85% 55%, 99% 51%, 99% 99%, 1% 100%);
+    }
+
+    50% {
+        clip-path: polygon(0 64%, 15% 68%, 31% 70%, 48% 64%, 65% 55%, 82% 48%, 100% 55%, 99% 99%, 1% 100%);
+    }
+}

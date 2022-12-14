@@ -1,0 +1,38 @@
+.table tbody tr:nth-child(2) td:nth-child(6) a {
+    font-weight: bold;
+}
+
+.table tbody tr:first-child {
+    color: var(--secondary-color);
+    font-size: 18px;
+    letter-spacing: 1px;
+}
+
+.table tbody tr:nth-child(2) {
+    color: var(--main-color);
+    font-weight: 500;
+}
+
+.d-flex.justify-content-between.align-items-center.m-3 div a {
+    position: relative;
+    background-color: var(--main-color);
+    color: var(--secondary-color);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 10px 30px;
+    border-radius: 10px;
+    transition: 0.5s;
+    border: #444;
+}
+
+.d-flex.justify-content-between.align-items-center.m-3 div a:hover {
+    letter-spacing: 3px;
+    background-color: var(--main-color);
+    color: var(--terciary-color-second);
+    box-shadow: 0 0 30px var(--main-color);
+}
+
+.bg-info {
+    background-color: var(--terciary-color-first) !important;
+}

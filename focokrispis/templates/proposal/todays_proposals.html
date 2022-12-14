@@ -1,57 +1,98 @@
-{% extends "base.html" %}
+{% extends "base.html" %} {% block content %} {% if user.is_authenticated %}
+  <div class="loggedSession-container">
+    <nav class="navbar navbar-expand-lg p-3 navbar-personalized">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">Focokrispis</a>
 
-{% block content %}
-<h1>{{tomorrow}} Proposals</h1>
-{% if already_voted %}
-Ya tienes un voto registrado.
-{% endif %}
-<table>
+        <div class="dropdown dropstart">
+          <button class="navbar__buttons dropdown-toggle"
+                  type="button"
+                  id="dropdownMenuButton1"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+          >
+            {{ user.username }}
+          </button>
+          <ul class="dropdown-menu text-center"
+              aria-labelledby="dropdownMenuButton1"
+          >
+            <li><a class="link-dark" href="{% url 'logout' %}">Log Out</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+{%endif%}
+    <div class="p-5 session-proposal">
+      <div class="d-flex justify-content-between align-items-center m-3">
+        <h1>{{tomorrow}} Proposals</h1>
+        <div>
+          <a class="btn btn-primary btn-" href="{% url 'proposal' %}" role="button">
+            Create Proposal
+          </a>
+        </div>
+      </div>
+
+      <div class="d-flex align-items-center m-3">
+        {% if already_voted %}
+          <h4 class="mx-2"><span class="badge bg-info">You already voted :)</span></h4>
+        {% endif %}
+
+        {% if results_available %}
+          <h4>
+            <span class="badge bg-info">
+              The results are ready!
+              <a class="text-decoration-none" href="{% url 'results' %}">
+                Results
+              </a>
+            </span>
+          </h4>
+        {% endif %}
+      </div>
+
+      <table class="table">
         <tr>
-            <th>Title</th>
-            <th>Description</th>
-            <th>User</th>
-            <th>Date</th>
-            <th>Status</th>
-
+          <th>Title</th>
+          <th>Description</th>
+          <th>User</th>
+          <th>Date</th>
+          <th>Status</th>
+          <th>Actions</th>
         </tr>
-    {% for proposal in proposals %}
+        {% for proposal in proposals %}
+        <tr>
+          <td>{{ proposal.title }}</td>
+          <td>{{ proposal.description }}</td>
+          <td>{{ proposal.user }}</td>
+          <td>{{ proposal.date }}</td>
+          <td>{{ proposal.status }}</td>
+          {% if users_without_proposals|length == 0 and not already_voted and not results_available%}
+            <td>
+              <a href="{% url 'vote' proposal_id=proposal.id %}">Vote!</a>
+            </td>
+          {% endif %} {% if already_voted %}
+            <td>
+                <p>#Votes {{proposal.number_of_votes}}</p>
+            </td>
+          {% endif %}
+        </tr>
+        {% endfor %}
+        {% for user in users_without_proposals %}
             <tr>
-                <td>{{ proposal.title }}</td>
-                <td>{{ proposal.description }}</td>
-                <td>{{ proposal.user }}</td>
-                <td>{{ proposal.date }}</td>
-                <td>{{ proposal.status }}</td>
-                {% if users_without_proposals|length == 0  and not already_voted  and not results_available%}
-                    <td>
-                        <a href="{% url 'vote' proposal_id=proposal.id %}">Vote!</a>
-                    </td>
-                {% endif %}
-                {% if already_voted %}
-                    <td>
-                        <p>#Votes  {{proposal.number_of_votes}}</p>
-                    </td>
-                {% endif %}
-                
+              <td>------------</td>
+              <td>------------</td>
+              <td>{{ user.username }}</td>
+              <td>------------</td>
+              <td>Not submited</td>
             </tr>
-    {% endfor %}
-    {% for user in users_without_proposals %}
-        <tr>
-            <td>------------</td>
-            <td>------------</td>
-            <td>{{ user.username }}</td>
-            <td>------------</td>
-            <td>Not submited</td>
-        </tr>
-    {% endfor %}   
-</table>
-{% if results_available %}
-The results are ready!
-<a href="{% url 'results' %}">Results</a><br>
-{% endif %}
+        {% endfor %}
+      </table>
+    </div>
+  </div>
+
 {% if users_without_proposals|length < 0 %}
-<p> Can not vote until all users have submitted proposals</p><br>
-<a href="" >Remind other members via email</a><br>
+    <p>Can not vote until all users have submitted proposals</p>
+    <br />
+    <a href="">Remind other members via email</a><br />
 {% endif %}
-<a href="{% url 'proposal' %}">Create Proposal</a><br>
-<a href="{% url 'home' %}">Home</a><br>
+
 {% endblock %}
